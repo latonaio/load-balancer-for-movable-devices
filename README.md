@@ -18,10 +18,34 @@ memory: 4 GB
   
 # 起動方法
 このリポジトリをクローンし、必要に応じenvoy-load-balancer.yamlの設定を置き換えてください。
+書き換えが必要な箇所は次のとおりです。
+
+```
+- endpoint:
+    address:
+      socket_address:
+        address: ポッド名
+        port_value: ポート番号
+```
+
 そして、docker imageをbuildしてください。  
 ```
 $ cd /path/to/load-balancer-for-movable-devices  
-$ bash docker-build.sh
+$ make docker-build
+```
+
+aion-service-definitionsのservices.ymlには下記のように記載してください。
+```
+  load-balancer-for-movable-devices:
+    scale: 1
+    startup: yes
+    always: yes
+    network: NodePort
+    ports:
+      - name: proxy
+        protocol: TCP
+        port: 30600
+        nodePort: 30600
 ```
   
 # 環境変数  
