@@ -34,7 +34,7 @@ $ cd /path/to/load-balancer-for-movable-devices
 $ make docker-build
 ```
 
-aion-service-definitionsのservices.ymlには下記のように記載してください。
+AION で 起動する場合、aion-service-definitions の services.yml には下記のように記載してください。
 ```
   load-balancer-for-movable-devices:
     scale: 1

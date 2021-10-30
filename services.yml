@@ -1,0 +1,10 @@
+load-balancer-for-movable-devices:
+  scale: 1
+  startup: yes
+  always: yes
+  network: NodePort
+  ports:
+    - name: proxy
+      protocol: TCP
+      port: 30600
+      nodePort: 30600
